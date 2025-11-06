@@ -16,42 +16,24 @@ use Core\Database;
 use Controllers\LoginController;
 use Controllers\RegisterController;
 
+// Obtener la ruta solicitada
+$request = $_SERVER['REQUEST_URI'];
+$request = strtok($request, '?'); // Remover query string
+
+// Rutas que no requieren BD
+$publicRoutes = ['/', '/index.php', '/servicios', '/sobre_nosotros', '/contacto', '/guarderia'];
+
 try {
-    // Inicializar base de datos
-    $db = Database::getInstance();
-    
-    // Obtener la ruta solicitada
-    $request = $_SERVER['REQUEST_URI'];
-    $request = strtok($request, '?'); // Remover query string
+    // Solo inicializar BD si no es ruta pública
+    if (!in_array($request, $publicRoutes)) {
+        $db = Database::getInstance();
+    }
     
     // Enrutamiento simple
     switch ($request) {
         case '/':
         case '/index.php':
             require_once __DIR__ . '/src/views/index.html';
-            break;
-            
-        case '/login':
-            $controller = LoginController::create($db);
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $controller->processLogin();
-            } else {
-                $controller->showLoginForm();
-            }
-            break;
-            
-        case '/register':
-            $controller = RegisterController::create($db);
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $controller->processRegister();
-            } else {
-                $controller->showRegisterForm();
-            }
-            break;
-            
-        case '/logout':
-            $controller = LoginController::create($db);
-            $controller->logout();
             break;
             
         case '/servicios':
@@ -68,6 +50,32 @@ try {
             
         case '/guarderia':
             require_once __DIR__ . '/src/views/guarderia.html';
+            break;
+            
+        case '/login':
+            if (!isset($db)) $db = Database::getInstance();
+            $controller = LoginController::create($db);
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $controller->processLogin();
+            } else {
+                $controller->showLoginForm();
+            }
+            break;
+            
+        case '/register':
+            if (!isset($db)) $db = Database::getInstance();
+            $controller = RegisterController::create($db);
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $controller->processRegister();
+            } else {
+                $controller->showRegisterForm();
+            }
+            break;
+            
+        case '/logout':
+            if (!isset($db)) $db = Database::getInstance();
+            $controller = LoginController::create($db);
+            $controller->logout();
             break;
             
         default:
