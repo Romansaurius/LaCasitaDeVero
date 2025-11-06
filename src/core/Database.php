@@ -180,6 +180,17 @@ class Database
                 $this->config['dbname'],
                 $this->config['charset']
             );
+            
+            // Agregar puerto si está especificado
+            if (isset($this->config['port']) && $this->config['port'] != 3306) {
+                $dsn = sprintf(
+                    "mysql:host=%s;port=%s;dbname=%s;charset=%s",
+                    $this->config['host'],
+                    $this->config['port'],
+                    $this->config['dbname'],
+                    $this->config['charset']
+                );
+            }
 
             $options = [
                 \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,

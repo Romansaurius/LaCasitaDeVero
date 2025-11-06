@@ -25,9 +25,9 @@ $publicRoutes = ['/', '/index.php', '/servicios', '/sobre_nosotros', '/contacto'
 
 try {
     // Solo inicializar BD si no es ruta pública
-    if (!in_array($request, $publicRoutes)) {
-        $db = Database::getInstance();
-    }
+    // if (!in_array($request, $publicRoutes)) {
+    //     $db = Database::getInstance();
+    // }
     
     // Enrutamiento simple
     switch ($request) {
@@ -53,29 +53,37 @@ try {
             break;
             
         case '/login':
-            if (!isset($db)) $db = Database::getInstance();
-            $controller = LoginController::create($db);
+            // if (!isset($db)) $db = Database::getInstance();
+            // $controller = LoginController::create($db);
+            require_once __DIR__ . '/src/views/login.html';
+            break;
+            /*
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $controller->processLogin();
             } else {
                 $controller->showLoginForm();
             }
+            */
             break;
             
         case '/register':
-            if (!isset($db)) $db = Database::getInstance();
-            $controller = RegisterController::create($db);
+            // if (!isset($db)) $db = Database::getInstance();
+            // $controller = RegisterController::create($db);
+            require_once __DIR__ . '/src/views/register.html';
+            break;
+            /*
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $controller->processRegister();
             } else {
                 $controller->showRegisterForm();
             }
+            */
             break;
             
         case '/logout':
-            if (!isset($db)) $db = Database::getInstance();
-            $controller = LoginController::create($db);
-            $controller->logout();
+            session_destroy();
+            header('Location: /');
+            exit;
             break;
             
         default:
