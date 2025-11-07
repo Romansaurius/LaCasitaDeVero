@@ -20,6 +20,27 @@ use Controllers\RegisterController;
 $request = $_SERVER['REQUEST_URI'];
 $request = strtok($request, '?'); // Remover query string
 
+// Servir archivos estáticos (CSS, imágenes, etc.)
+if (preg_match('/\.(css|js|png|jpg|jpeg|gif|ico|svg)$/', $request)) {
+    $filePath = __DIR__ . '/config' . $request;
+    if (file_exists($filePath)) {
+        $mimeTypes = [
+            'css' => 'text/css',
+            'js' => 'application/javascript',
+            'png' => 'image/png',
+            'jpg' => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+            'gif' => 'image/gif',
+            'ico' => 'image/x-icon',
+            'svg' => 'image/svg+xml'
+        ];
+        $ext = pathinfo($filePath, PATHINFO_EXTENSION);
+        header('Content-Type: ' . ($mimeTypes[$ext] ?? 'application/octet-stream'));
+        readfile($filePath);
+        exit;
+    }
+}
+
 // Rutas que no requieren BD
 $publicRoutes = ['/', '/index.php', '/servicios', '/sobre_nosotros', '/contacto', '/guarderia'];
 
@@ -50,6 +71,11 @@ try {
             
         case '/guarderia':
             require_once __DIR__ . '/src/views/guarderia.html';
+            break;
+            
+        case '/reseñas':
+        case '/resenas':
+            require_once __DIR__ . '/src/views/reseñas.html';
             break;
             
         case '/login':
