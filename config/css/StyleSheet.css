@@ -49,6 +49,20 @@ nav.headnav a:hover {
     background-color: brown;
 }
 
+nav.headnav a.auth-btn {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    border-radius: 15px;
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+nav.headnav a.auth-btn:hover {
+    background: linear-gradient(45deg, #45a049, #4CAF50);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
 
 
 /*Footer Div-Common*/
