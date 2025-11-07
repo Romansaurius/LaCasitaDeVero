@@ -5,8 +5,9 @@ header {
     margin-top: -22px;
     margin-right: -8px;
     margin-left: -8px;
-    padding-bottom: 32px;
+    padding-bottom: 50px;
     position: relative;
+    min-height: 90px;
 }
 
 #l {
@@ -50,27 +51,29 @@ nav.headnav a:hover {
 }
 
 nav.auth-nav {
-    float: left;
-    margin-top: -10px;
-    margin-left: 10px;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
 }
 
 nav.auth-nav a.auth-btn {
     text-decoration: none;
     color: white;
     background: linear-gradient(45deg, #4CAF50, #45a049);
-    border-radius: 15px;
-    padding: 8px 20px;
+    border-radius: 20px;
+    padding: 10px 25px;
     margin-right: 10px;
     display: inline-block;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+    font-size: 13px;
+    font-weight: bold;
 }
 
 nav.auth-nav a.auth-btn:hover {
     background: linear-gradient(45deg, #45a049, #4CAF50);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
 }
 
 
