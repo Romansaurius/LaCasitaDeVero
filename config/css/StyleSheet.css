@@ -49,15 +49,25 @@ nav.headnav a:hover {
     background-color: brown;
 }
 
-nav.headnav a.auth-btn {
+nav.auth-nav {
+    float: left;
+    margin-top: -10px;
+    margin-left: 10px;
+}
+
+nav.auth-nav a.auth-btn {
+    text-decoration: none;
+    color: white;
     background: linear-gradient(45deg, #4CAF50, #45a049);
     border-radius: 15px;
     padding: 8px 20px;
+    margin-right: 10px;
+    display: inline-block;
     transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
-nav.headnav a.auth-btn:hover {
+nav.auth-nav a.auth-btn:hover {
     background: linear-gradient(45deg, #45a049, #4CAF50);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.4);
