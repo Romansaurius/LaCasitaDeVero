@@ -6,15 +6,15 @@
 // Iniciar sesión
 session_start();
 
-// Incluir clases necesarias
-require_once __DIR__ . '/src/core/Database.php';
-require_once __DIR__ . '/src/models/UserModel.php';
-require_once __DIR__ . '/src/controllers/LoginController.php';
-require_once __DIR__ . '/src/controllers/RegisterController.php';
+// Las clases se cargarán solo cuando sean necesarias
+// require_once __DIR__ . '/src/core/Database.php';
+// require_once __DIR__ . '/src/models/UserModel.php';
+// require_once __DIR__ . '/src/controllers/LoginController.php';
+// require_once __DIR__ . '/src/controllers/RegisterController.php';
 
-use Core\Database;
-use Controllers\LoginController;
-use Controllers\RegisterController;
+// use Core\Database;
+// use Controllers\LoginController;
+// use Controllers\RegisterController;
 
 // Obtener la ruta solicitada
 $request = $_SERVER['REQUEST_URI'];

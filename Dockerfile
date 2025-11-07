@@ -17,6 +17,11 @@ RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 
 WORKDIR /var/www/html
 
+# Render usa la variable PORT
+ENV PORT=80
 EXPOSE 80
+
+# Configurar Apache para escuchar en el puerto correcto
+RUN sed -i 's/Listen 80/Listen ${PORT}/' /etc/apache2/ports.conf
 
 CMD ["apache2-foreground"]
