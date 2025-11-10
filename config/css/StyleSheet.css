@@ -9,6 +9,29 @@ header {
     position: relative;
 }
 
+.auth-links {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 13px;
+    z-index: 10;
+}
+
+.auth-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+    padding: 0 8px;
+}
+
+.auth-links a:hover {
+    color: white;
+}
+
+.auth-links .separator {
+    color: #666;
+}
+
 #l {
     float: left;
     height: 40px;
@@ -47,17 +70,6 @@ nav.headnav a {
 
 nav.headnav a:hover {
     background-color: brown;
-}
-
-a.footer-auth {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a.footer-auth:hover {
-    color: #4CAF50;
-    text-decoration: underline;
 }
 
 
